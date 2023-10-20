@@ -1,6 +1,7 @@
 import React from 'react';
 // import PhotoListItem from './components/PhotoListItem';
 import PhotoList from './components/PhotoList';
+import TopicList from './components/TopicList';
 
 import './App.scss';
 
@@ -12,16 +13,7 @@ import './App.scss';
 const App = () => {
   return (
     <div className="App">
-      {/* {photos.map((photoData)=>(
-        <PhotoListItem
-          key={photoData.id}
-          city = {photoData.location.city}
-          country = {photoData.location.country}
-          image = {photoData.imageSource}
-          username = {photoData.username}
-          profileImage = {photoData.profile}
-        />
-      ))} */}
+      <TopicList />
       <PhotoList/>
     </div>
   );
