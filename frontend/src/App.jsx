@@ -10,12 +10,16 @@ const App = () => {
     setIsModalOpen(true);
     console.log(isModalOpen);
   };
+
+  const closeModal = ()=>{
+    setIsModalOpen(false);
+  };
   return (
     <>
       <HomeRoute
         openModal = {openModal}
       />
-      {isModalOpen && <PhotoDetailsModal/>}
+      {isModalOpen && <PhotoDetailsModal closeModal={closeModal}/>}
     </>
    
   );
