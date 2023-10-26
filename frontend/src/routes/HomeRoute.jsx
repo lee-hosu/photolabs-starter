@@ -3,7 +3,7 @@ import PhotoList from '../components/PhotoList';
 import TopNavigationBar from '../components/TopNavigationBar';
 import '../styles/HomeRoute.scss';
 
-const HomeRoute = () => {
+const HomeRoute = ({openModal}) => {
   const [favoritedPhotos, setFavoritedPhotos] = useState([]);
   const toggleFav = (photoId)=>{
     if (favoritedPhotos.includes(photoId)) {
@@ -12,7 +12,6 @@ const HomeRoute = () => {
       setFavoritedPhotos([...favoritedPhotos, photoId]);
     }
   };
-
   const checkFavPhotosExist = favoritedPhotos.length >= 1;
 
   return (
@@ -21,6 +20,7 @@ const HomeRoute = () => {
       <PhotoList
         favoritedPhotos = {favoritedPhotos}
         toggleFavorite = {toggleFav}
+        openModal={openModal}
       />
     </div>
   );

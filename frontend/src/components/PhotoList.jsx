@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import PhotoListItem from './PhotoListItem';
 import photos from '../mocks/photos';
 import "../styles/PhotoList.scss";
 
-const PhotoList = ({favoritedPhotos, toggleFavorite}) => {
+const PhotoList = ({favoritedPhotos, toggleFavorite, openModal}) => {
+
   return (
     <ul className="photo-list">
       {photos.map((data)=>(
@@ -18,6 +19,7 @@ const PhotoList = ({favoritedPhotos, toggleFavorite}) => {
             country = {data.location.country}
             isFavorite={favoritedPhotos.includes(data.id)}
             toggleFavorite={() => toggleFavorite(data.id)}
+            openModal = {openModal}
           />
         </li>
       ))}

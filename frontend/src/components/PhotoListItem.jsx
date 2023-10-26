@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PhotoFavButton from './PhotoFavButton';
+
 
 import "../styles/PhotoListItem.scss";
 
-const PhotoListItem = ({image, profileImage, username, city, country, isFavorite, toggleFavorite}) => {
+const PhotoListItem = ({image, profileImage, username, city, country, isFavorite, toggleFavorite, openModal}) => {
 
   const handleFavoriteClick = () => {
     toggleFavorite();
@@ -11,8 +12,13 @@ const PhotoListItem = ({image, profileImage, username, city, country, isFavorite
 
   return (
     <div className="photo-list__item">
-      <PhotoFavButton fav={isFavorite} switchFav={handleFavoriteClick}/>
-      <img className="photo-list__image" src={image} alt="" />
+      <PhotoFavButton
+        fav={isFavorite}
+        switchFav={handleFavoriteClick}
+      />
+      
+      <img className="photo-list__image" src={image} alt="" onClick={openModal}/>
+
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={profileImage} alt="" />
         <div className="photo-list__user-info">
