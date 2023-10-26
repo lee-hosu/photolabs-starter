@@ -5,18 +5,22 @@ import '../styles/HomeRoute.scss';
 
 const HomeRoute = () => {
   const [favoritedPhotos, setFavoritedPhotos] = useState([]);
+  const toggleFav = (photoId)=>{
+    if (favoritedPhotos.includes(photoId)) {
+      setFavoritedPhotos(favoritedPhotos.filter((id) => id !== photoId));
+    } else {
+      setFavoritedPhotos([...favoritedPhotos, photoId]);
+    }
+  };
+
+  const checkFavPhotosExist = favoritedPhotos.length >= 1;
+
   return (
     <div className="home-route">
-      <TopNavigationBar/>
+      <TopNavigationBar isFavPhotoExist = {checkFavPhotosExist}/>
       <PhotoList
         favoritedPhotos = {favoritedPhotos}
-        toggleFavorite = {(photoId)=>{
-          if (favoritedPhotos.includes(photoId)) {
-            setFavoritedPhotos(favoritedPhotos.filter((id) => id !== photoId));
-          } else {
-            setFavoritedPhotos([...favoritedPhotos, photoId]);
-          }
-        }}
+        toggleFavorite = {toggleFav}
       />
     </div>
   );
