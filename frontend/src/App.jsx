@@ -6,20 +6,27 @@ import './App.scss';
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = ()=>{
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+  const openModal = (photo)=>{
     setIsModalOpen(true);
-    console.log(isModalOpen);
+    setSelectedPhoto(photo);
   };
 
   const closeModal = ()=>{
     setIsModalOpen(false);
+    setSelectedPhoto(null);
   };
+
   return (
     <>
       <HomeRoute
         openModal = {openModal}
       />
-      {isModalOpen && <PhotoDetailsModal closeModal={closeModal}/>}
+      {isModalOpen && <PhotoDetailsModal
+        closeModal={closeModal}
+        selectedPhoto = {selectedPhoto}
+      />}
     </>
    
   );

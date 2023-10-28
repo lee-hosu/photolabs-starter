@@ -21,6 +21,7 @@ const HomeRoute = ({openModal}) => {
         favoritedPhotos = {favoritedPhotos}
         toggleFavorite = {toggleFav}
         openModal={openModal}
+        
       />
     </div>
   );

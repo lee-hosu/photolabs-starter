@@ -19,7 +19,7 @@ const PhotoList = ({favoritedPhotos, toggleFavorite, openModal}) => {
             country = {data.location.country}
             isFavorite={favoritedPhotos.includes(data.id)}
             toggleFavorite={() => toggleFavorite(data.id)}
-            openModal = {openModal}
+            openModal = {()=> openModal(data)}
           />
         </li>
       ))}
