@@ -3,11 +3,11 @@ import PhotoListItem from './PhotoListItem';
 import photos from '../mocks/photos';
 import "../styles/PhotoList.scss";
 
-const PhotoList = ({favoritedPhotos, toggleFavorite, openModal}) => {
+const PhotoList = ({favoritedPhotos, toggleFavorite, openModal, photosToDisplay = photos}) => {
 
   return (
     <ul className="photo-list">
-      {photos.map((data)=>(
+      {photosToDisplay.map((data)=>(
         <li key={data.id}>
           <PhotoListItem
             photoId = {data.id}
