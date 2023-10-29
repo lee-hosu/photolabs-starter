@@ -4,7 +4,7 @@ import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 
 const PhotoDetailsModal = ({closeModal, selectedPhoto, favoritedPhotos, toggleFav}) => {
-  const { id, location, urls, user } = selectedPhoto;
+  const { location, urls, user } = selectedPhoto;
   console.log(selectedPhoto);
   return (
     <div className="photo-details-modal">
@@ -19,7 +19,7 @@ const PhotoDetailsModal = ({closeModal, selectedPhoto, favoritedPhotos, toggleFa
         <div className="photo-details-modal__header">
           <img className="photo-details-modal__photographer-profile" src={user.profile} alt="" />
           <div className="photo-details-modal__photographer-info">
-            <span>{user.name}</span>
+            <span>{user.username}</span>
             <br/>
             <span className="photo-details-modal__photographer-location">{location.city}, {location.country}</span>
           </div>

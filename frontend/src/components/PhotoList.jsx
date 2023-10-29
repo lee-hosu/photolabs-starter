@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import PhotoListItem from './PhotoListItem';
 import photos from '../mocks/photos';
 import "../styles/PhotoList.scss";
@@ -14,7 +14,7 @@ const PhotoList = ({favoritedPhotos, toggleFavorite, openModal, photosToDisplay 
             key = {data.user.id}
             image = {data.urls.full}
             profileImage = {data.user.profile}
-            username = {data.user.name}
+            username = {data.user.username}
             city = {data.location.city}
             country = {data.location.country}
             isFavorite={favoritedPhotos.includes(data.id)}
