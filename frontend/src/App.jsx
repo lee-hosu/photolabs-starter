@@ -1,50 +1,33 @@
-import React, {useState} from 'react';
+import React from 'react';
 import HomeRoute from './routes/HomeRoute';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
+import useApplicationData from 'hooks/useApplicationData';
 
 import './App.scss';
 
 const App = () => {
-  // Modal Functionality
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [favoritedPhotos, setFavoritedPhotos] = useState([]);
-
-  const openModal = (photo)=>{
-    setIsModalOpen(true);
-    setSelectedPhoto(photo);
-  };
-
-  const closeModal = ()=>{
-    setIsModalOpen(false);
-    setSelectedPhoto(null);
-  };
-
-  // Favorite Functionality
-  const toggleFav = (photoId)=>{
-    if (favoritedPhotos.includes(photoId)) {
-      setFavoritedPhotos(favoritedPhotos.filter((id) => id !== photoId));
-    } else {
-      setFavoritedPhotos([...favoritedPhotos, photoId]);
-    }
-  };
+  const {
+    state,
+    onPhotoSelect,
+    updateToFavPhotoIds,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
  
 
   return (
     <>
       <HomeRoute
-        openModal = {openModal}
-        favoritedPhotos = {favoritedPhotos}
-        toggleFav = {toggleFav}
+        openModal = {onPhotoSelect}
+        favoritedPhotos = {state.favoritedPhotos}
+        toggleFav = {updateToFavPhotoIds}
       />
-      {isModalOpen && <PhotoDetailsModal
-        closeModal={closeModal}
-        selectedPhoto = {selectedPhoto}
-        favoritedPhotos = {favoritedPhotos}
-        toggleFav = {toggleFav}
+      {state.isModalOpen && <PhotoDetailsModal
+        closeModal={onClosePhotoDetailsModal}
+        selectedPhoto={state.selectedPhoto}
+        favoritedPhotos={state.favoritedPhotos}
+        toggleFav={updateToFavPhotoIds}
       />}
     </>
-   
   );
 };
 
