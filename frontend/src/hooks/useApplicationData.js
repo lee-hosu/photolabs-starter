@@ -76,24 +76,6 @@ const initialState = {
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // Fetch photo data
-  useEffect(() => {
-    fetch('http://localhost:8001/api/photos')
-      .then(response => response.json())
-      .then(data => {
-        setPhotoData(data);
-      });
-  }, []); // Empty dependency array ensures this runs once when component mounts.
-
-  // Fetch topic data
-  useEffect(() => {
-    fetch('http://localhost:8001/api/topics')
-      .then(response => response.json())
-      .then(data => {
-        setTopicData(data);
-      });
-  }, []);
-
   const updateToFavPhotoIds = (photoId) => {
     if (state.favoritedPhotos.includes(photoId)) {
       dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: { id: photoId } });
@@ -122,6 +104,34 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: { details } });
   };
 
+  // Fetch photo data
+  useEffect(() => {
+    fetch('http://localhost:8001/api/photos')
+      .then(response => response.json())
+      .then(data => {
+        setPhotoData(data);
+      });
+  }, []); // Empty dependency array ensures this runs once when component mounts.
+  
+  // Fetch topic data
+  useEffect(() => {
+    fetch('http://localhost:8001/api/topics')
+      .then(response => response.json())
+      .then(data => {
+        setTopicData(data);
+      });
+  }, []);
+  
+  // Fetch photos by topic ID
+  const getPhotosByTopicId = (topicId) => {
+    fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
+      .then((response)=> response.json())
+      .then(data => {
+        setPhotoData(data);
+      })
+      .catch((error)=> console.error(`Error fetching photos for topic ID ${topicId}:`, error));
+  };
+
   return {
     state,
     onPhotoSelect,
@@ -130,6 +140,7 @@ const useApplicationData = () => {
     setPhotoData,
     setTopicData,
     displayPhotoDetails,
+    getPhotosByTopicId,
   };
 };
 

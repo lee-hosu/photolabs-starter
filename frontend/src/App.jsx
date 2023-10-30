@@ -11,6 +11,7 @@ const App = () => {
     onPhotoSelect,
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
+    getPhotosByTopicId,
   } = useApplicationData();
  
 
@@ -22,6 +23,7 @@ const App = () => {
         toggleFav = {updateToFavPhotoIds}
         topics={state.topics}
         photos={state.photos}
+        getPhotosByTopicId={getPhotosByTopicId}
       />
       {state.isModalOpen && <PhotoDetailsModal
         closeModal={onClosePhotoDetailsModal}
