@@ -1,16 +1,17 @@
 import React from "react";
 import TopicListItem from './TopicListItem';
-import topics from '../mocks/topics';
+// import topics from '../mocks/topics';
 import "../styles/TopicList.scss";
 
-const TopicList = () => {
+const TopicList = ({topics, getPhotosByTopicId}) => {
   return (
     <div className="top-nav-bar__topic-list">
       {
-        topics.map((data) => (
+        topics.map((topic) => (
           <TopicListItem
-            key={data.id} // Don't forget to add a key when mapping over an array
-            title={data.title}
+            key={topic.id}
+            topic={topic}
+            getPhotosByTopicId={getPhotosByTopicId}
           />
         ))
       }

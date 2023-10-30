@@ -1,4 +1,4 @@
-import { useReducer} from 'react';
+import { useReducer, useEffect } from 'react';
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -75,6 +75,24 @@ const initialState = {
 
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // Fetch photo data
+  useEffect(() => {
+    fetch('http://localhost:8001/api/photos')
+      .then(response => response.json())
+      .then(data => {
+        setPhotoData(data);
+      });
+  }, []); // Empty dependency array ensures this runs once when component mounts.
+
+  // Fetch topic data
+  useEffect(() => {
+    fetch('http://localhost:8001/api/topics')
+      .then(response => response.json())
+      .then(data => {
+        setTopicData(data);
+      });
+  }, []);
 
   const updateToFavPhotoIds = (photoId) => {
     if (state.favoritedPhotos.includes(photoId)) {

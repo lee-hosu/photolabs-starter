@@ -20,12 +20,15 @@ const App = () => {
         openModal = {onPhotoSelect}
         favoritedPhotos = {state.favoritedPhotos}
         toggleFav = {updateToFavPhotoIds}
+        topics={state.topics}
+        photos={state.photos}
       />
       {state.isModalOpen && <PhotoDetailsModal
         closeModal={onClosePhotoDetailsModal}
         selectedPhoto={state.selectedPhoto}
         favoritedPhotos={state.favoritedPhotos}
         toggleFav={updateToFavPhotoIds}
+        photos={state.photos}
       />}
     </>
   );

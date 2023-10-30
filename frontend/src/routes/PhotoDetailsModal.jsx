@@ -5,7 +5,6 @@ import closeSymbol from '../assets/closeSymbol.svg';
 
 const PhotoDetailsModal = ({closeModal, selectedPhoto, favoritedPhotos, toggleFav}) => {
   const { location, urls, user } = selectedPhoto;
-  console.log(selectedPhoto);
   return (
     <div className="photo-details-modal">
       {/* Close button */}
@@ -29,7 +28,7 @@ const PhotoDetailsModal = ({closeModal, selectedPhoto, favoritedPhotos, toggleFa
       <div className="photo-details-modal__images">
         {selectedPhoto.similar_photos &&
           <PhotoList
-            photosToDisplay={Object.values(selectedPhoto.similar_photos)}
+            photos={Object.values(selectedPhoto.similar_photos)}
             favoritedPhotos={favoritedPhotos}
             toggleFavorite={toggleFav}
             openModal={() => {}}

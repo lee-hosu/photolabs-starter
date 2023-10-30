@@ -4,7 +4,9 @@ import PhotoFavButton from './PhotoFavButton';
 
 import "../styles/PhotoListItem.scss";
 
-const PhotoListItem = ({image, profileImage, username, city, country, isFavorite, toggleFavorite, openModal}) => {
+const PhotoListItem = ({isFavorite, toggleFavorite, openModal, photo}) => {
+
+  const { id, location, urls, user } = photo;
 
   const handleFavoriteClick = () => {
     toggleFavorite();
@@ -17,14 +19,14 @@ const PhotoListItem = ({image, profileImage, username, city, country, isFavorite
         switchFav={handleFavoriteClick}
       />
       
-      <img className="photo-list__image" src={image} alt="" onClick={openModal}/>
+      <img className="photo-list__image" src={urls.regular} alt={`Photo ${id}`} onClick={openModal}/>
 
       <div className="photo-list__user-details">
-        <img className="photo-list__user-profile" src={profileImage} alt="" />
+        <img className="photo-list__user-profile" src={user.profile} alt="" />
         <div className="photo-list__user-info">
-          <span>{username}</span>
+          <span>{user.username}</span>
           <br/>
-          <span className="photo-list__user-location">{city}, {country}</span>
+          <span className="photo-list__user-location">{location.city}, {location.country}</span>
         </div>
       </div>
     </div>
